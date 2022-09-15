@@ -7,11 +7,11 @@ public class HelloWorldTest {
     @Test
     public void testGetStatusCode(){
         Response response = RestAssured
-                .given()
-                .redirects()
-                .follow(true)
-                .get("https://playground.learnqa.ru/api/long_redirect")
-                .andReturn();
-        System.out.println(response.getHeader("X-Host"));
-    }
+                    .given()
+                    .redirects()
+                    .follow(false)
+                    .get("https://playground.learnqa.ru/api/long_redirect")
+                    .andReturn();
+        System.out.println(response.getHeader("Location"));
+        }
 }
