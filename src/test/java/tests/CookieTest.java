@@ -15,4 +15,12 @@ public class CookieTest {
 
         Assertions.assertEquals(response.getCookie("HomeWork"), "hw_value");
     }
+
+    @Test
+    public void checkHeader(){
+        Response response = RestAssured
+                .get("https://playground.learnqa.ru/api/homework_header")
+                .andReturn();
+        Assertions.assertEquals(response.getHeader("x-secret-homework-header"), "Some secret value");
+    }
 }
