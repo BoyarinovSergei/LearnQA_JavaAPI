@@ -44,7 +44,8 @@ public class HelloWorldTest {
         Assertions.assertEquals(response2.getJsonObject(
                 "status").toString(), "Job is NOT ready");
 
-        try {Thread.sleep(Long.parseLong(String.format("%d000", (int) response.getJsonObject("seconds"))));
+        try {Thread.sleep(Long.parseLong(
+                String.format("%d000", (int) response.getJsonObject("seconds"))));
         } catch (InterruptedException e) {throw new RuntimeException(e);}
 
         JsonPath response3 = RestAssured
