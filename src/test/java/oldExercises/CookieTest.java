@@ -1,4 +1,4 @@
-package tests;
+package oldExercises;
 
 import com.tngtech.java.junit.dataprovider.DataProvider;
 import com.tngtech.java.junit.dataprovider.DataProviderRunner;
@@ -37,9 +37,9 @@ public class CookieTest {
                 .get("https://playground.learnqa.ru/ajax/api/user_agent_check")
                 .jsonPath();
 
-        Assertions.assertEquals(response.get("platform"), platform, "Wrong info in this agent: " + agentName);
-        Assertions.assertEquals(response.get("browser"), browser, "Wrong info in this agent: " + agentName);
-        Assertions.assertEquals(response.get("device"), device, "Wrong info in this agent: " + agentName);
+        Assertions.assertEquals(response.get("platform"), platform, "platform " + agentName);
+        Assertions.assertEquals(response.get("browser"), browser, "browser " + agentName);
+        Assertions.assertEquals(response.get("device"), device, "device " + agentName);
     }
 
     @Test
