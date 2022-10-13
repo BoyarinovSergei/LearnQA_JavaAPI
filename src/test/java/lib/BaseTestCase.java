@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Assertions;
 import static org.hamcrest.Matchers.hasKey;
 
 import java.util.Map;
+import java.util.Random;
 
 public class BaseTestCase {
     protected String getHeader(Response response, String name){
@@ -25,5 +26,15 @@ public class BaseTestCase {
     protected int getIntFromJson(Response response, String name){
         response.then().assertThat().body("$", hasKey(name));
         return response.jsonPath().getInt(name);
+    }
+
+    public static String generateString(String characters, int length)
+    {
+        char[] text = new char[length];
+        for (int i = 0; i < length; i++)
+        {
+            text[i] = characters.charAt(new Random().nextInt(characters.length()));
+        }
+        return new String(text);
     }
 }

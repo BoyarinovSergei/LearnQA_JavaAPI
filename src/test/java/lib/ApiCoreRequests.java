@@ -10,7 +10,7 @@ import java.util.Map;
 
 public class ApiCoreRequests {
 
-    @Step("Make a GET-request with token and auth cookie")
+    @Step("GET-request with token and cookie")
     public Response makeGetRequest(String url, String token, String cookie) {
         return RestAssured.given()
                 .filter(new AllureRestAssured())
@@ -20,7 +20,7 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("Make a GET-request with auth cookie only")
+    @Step("GET-request with cookie")
     public Response makeGetRequestWithCookie(String url, String cookie) {
         return RestAssured.given()
                 .filter(new AllureRestAssured())
@@ -29,7 +29,7 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("Make a GET-request with token only")
+    @Step("GET-request with token")
     public Response makeGetRequestWithToken(String url, String token) {
         return RestAssured.given()
                 .filter(new AllureRestAssured())
@@ -38,7 +38,8 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("Make a POST-request")
+
+    @Step("POST-request")
     public Response makePostRequest(String url, Map<String, String> body){
         return RestAssured.given()
                 .filter(new AllureRestAssured())
