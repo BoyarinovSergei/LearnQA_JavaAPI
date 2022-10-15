@@ -29,10 +29,9 @@ public class UserRegisterTest extends BaseTestCase {
     }
     private  Map<String, String> map = new HashMap<>(){
         {
-            put("username","string"); put("firstName","string"); put("lastName","string");
-            put("email","qwer@yandex.ru");put("password","string");
-        }
-    };
+            put("username", "string"); put("firstName", "string"); put("lastName", "string");
+            put("email", "qwer@yandex.ru"); put("password", "string");
+        }};
 
     @Test
     public void testCreateUserWithWrongEmail(){
@@ -54,7 +53,6 @@ public class UserRegisterTest extends BaseTestCase {
         map1.put("lastName", lastName);
         map1.put("email", email);
         map1.put("password", password);
-
 
         Response response = apiCoreRequests
                 .makePostRequest("https://playground.learnqa.ru/api/user/", map1);

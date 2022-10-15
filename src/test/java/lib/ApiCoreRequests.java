@@ -4,6 +4,7 @@ import io.qameta.allure.Step;
 import io.qameta.allure.restassured.AllureRestAssured;
 import io.restassured.RestAssured;
 import io.restassured.http.Header;
+import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 
 import java.util.Map;
@@ -38,7 +39,6 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-
     @Step("POST-request")
     public Response makePostRequest(String url, Map<String, String> body){
         return RestAssured.given()
@@ -46,5 +46,13 @@ public class ApiCoreRequests {
                 .body(body)
                 .post(url)
                 .andReturn();
+    }
+
+    @Step("GET-request JSON")
+    public JsonPath makeGetJSONRequest(String url){
+        return RestAssured
+                .given()
+                .get(url)
+                .jsonPath();
     }
 }
