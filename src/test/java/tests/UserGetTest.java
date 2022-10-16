@@ -24,7 +24,7 @@ public class UserGetTest extends BaseTestCase {
                 .makePostRequest("https://playground.learnqa.ru/api/user/login", authData);
 
         JsonPath response1 = apiCoreRequests
-                .makeGetJSONRequest("https://playground.learnqa.ru/api/user/1");
+                .makeGetRequestWithTokenCookieJSON("https://playground.learnqa.ru/api/user/1", "", "");
 
         Assertions.assertEquals(response1.get("username"), "Lana");
         }

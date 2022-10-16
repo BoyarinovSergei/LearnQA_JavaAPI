@@ -80,14 +80,6 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
-    @Step("GET-request JSON")
-    public JsonPath makeGetJSONRequest(String url){
-        return RestAssured
-                .given()
-                .get(url)
-                .jsonPath();
-    }
-
     @Step("POST-request JSON with params")
     public JsonPath makePostJSONRequestWithParams(String url, Map<String, String> params){
         return RestAssured
@@ -103,6 +95,16 @@ public class ApiCoreRequests {
                 .given()
                 .params(params)
                 .put(url)
+                .andReturn();
+    }
+
+    @Step("DELETE-request with token and cookie")
+    public Response makeDeleteRequestWithTokenCookie(String url, String token, String cookie) {
+        return RestAssured.given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .delete(url)
                 .andReturn();
     }
 }
