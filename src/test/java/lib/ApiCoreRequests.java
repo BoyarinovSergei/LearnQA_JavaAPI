@@ -21,6 +21,38 @@ public class ApiCoreRequests {
                 .andReturn();
     }
 
+    @Step("GET-request with token and cookie JSON Path")
+    public JsonPath makeGetRequestWithTokenCookieJSON(String url, String token, String cookie) {
+        return RestAssured.given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .get(url)
+                .jsonPath();
+    }
+
+    @Step("PUT-request with token, cookie and body")
+    public Response makePutRequestWithTokenCookieBody(String url, String token, String cookie, Map<String, String> body) {
+        return RestAssured.given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .body(body)
+                .put(url)
+                .andReturn();
+    }
+
+    @Step("PUT-request with token, cookie and body JSON Path")
+    public JsonPath makePutRequestWithTokenCookieBodyJsonPath(String url, String token, String cookie, Map<String, String> body) {
+        return RestAssured.given()
+                .filter(new AllureRestAssured())
+                .header(new Header("x-csrf-token", token))
+                .cookie("auth_sid", cookie)
+                .body(body)
+                .put(url)
+                .jsonPath();
+    }
+
     @Step("GET-request with cookie")
     public Response makeGetRequestWithCookie(String url, String cookie) {
         return RestAssured.given()
@@ -54,5 +86,23 @@ public class ApiCoreRequests {
                 .given()
                 .get(url)
                 .jsonPath();
+    }
+
+    @Step("POST-request JSON with params")
+    public JsonPath makePostJSONRequestWithParams(String url, Map<String, String> params){
+        return RestAssured
+                .given()
+                .params(params)
+                .post(url)
+                .jsonPath();
+    }
+
+    @Step("PUT-request with params")
+    public Response makePutRequestWithParams(String url, Map<String, String> params){
+        return RestAssured
+                .given()
+                .params(params)
+                .put(url)
+                .andReturn();
     }
 }
