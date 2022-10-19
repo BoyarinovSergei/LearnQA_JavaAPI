@@ -1,5 +1,8 @@
 package tests;
 
+import io.qameta.allure.Description;
+import io.qameta.allure.Severity;
+import io.qameta.allure.SeverityLevel;
 import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
 import lib.ApiCoreRequests;
@@ -7,6 +10,7 @@ import lib.BaseTestCase;
 import org.junit.Assert;
 import org.junit.Test;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.DisplayName;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -18,6 +22,9 @@ public class UserEditTest  extends BaseTestCase {
     private ApiCoreRequests apiCoreRequests = new ApiCoreRequests();
 
     @Test
+    @DisplayName("Изменение данных без авториации")
+    @Description("Создание пользователя и изменение его данные, без авторизации")
+    @Severity(SeverityLevel.CRITICAL)
     public void testChangeDataWithoutAuth(){
         Map<String, String> data = new HashMap<>();
         data.put("email", getRandomEmail());
@@ -40,6 +47,9 @@ public class UserEditTest  extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Изменение данных авторизовавшись под другим юзером")
+    @Description("Создание двух пользователей, авторизация под первым и редактирование второго")
+    @Severity(SeverityLevel.NORMAL)
     public void testChangeDataBeingAuthorizedAsAnotherUser(){
         Map<String, String> dataForFirstUser = getRegistrationData();
 
@@ -70,6 +80,9 @@ public class UserEditTest  extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Изменение email пользователя")
+    @Description("Создание пользователя и изменение email на невалидный без @")
+    @Severity(SeverityLevel.NORMAL)
     public void testChangeUserEmail(){
         Map<String, String> data = getRegistrationData();
 
@@ -107,6 +120,9 @@ public class UserEditTest  extends BaseTestCase {
     }
 
     @Test
+    @DisplayName("Изменение firstName пользователя")
+    @Description("Создание пользователя и изменение firstName на невалидный длинной в один символ")
+    @Severity(SeverityLevel.NORMAL)
     public void testChangeFirstName(){
         Map<String, String> data = getRegistrationData();
 
